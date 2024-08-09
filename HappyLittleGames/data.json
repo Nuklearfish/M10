@@ -1,0 +1,13 @@
+{
+    "breakout": [
+      { "name": "Mark", "punktzahl": 100 },
+      { "name": "Jacob", "punktzahl": 200 },
+      { "name": "Rob", "punktzahl" : 999}
+    
+    ],
+    "snake": [
+      { "name": "Mark", "punktzahl": 100 },
+      { "name": "Jacob", "punktzahl": 200 }
+      
+    ]
+  }

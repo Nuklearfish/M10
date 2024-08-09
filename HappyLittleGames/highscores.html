@@ -16,6 +16,26 @@
     <script src=".\highscores.js"></script>
   </head>
   <body>
+    <script>
+      //Setzt JSON Cookie und überprüft ob bereits einer aktiv ist
+        fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+          const cookieScore = 'highscores';
+          const cookieValue = JSON.stringify(data);
+          const expires = new Date(Date.now() + 30 * 60 * 1000).toUTCString(); // Cookie hält 30 Minuten
+
+          const existingCookie = document.cookie.match(new RegExp(`${cookieScore}=([^;]*)`));
+
+          if (existingCookie) {
+            document.cookie = `${cookieScore}=${cookieValue}; expires=${expires}; path=/`;
+          } else {
+            document.cookie = `${cookieScore}=${cookieValue}; expires=${expires}; path=/`;
+          }
+
+          
+        });
+    </script>
     <div class="container-fluid">
       <header
         class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
@@ -64,57 +84,7 @@
                         <th scope="col">Punktzahl</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">4</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">5</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">6</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">7</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">8</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">9</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">10</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
+                    <tbody id ="breakout-tbody">
                     </tbody>
                   </table>
                 </div>
@@ -134,58 +104,10 @@
                         <th scope="col">Punktzahl</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">4</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">5</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">6</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">7</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">8</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">9</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">10</th>
-                        <td>Larry the Bird</td>
-                        <td>Thornton</td>
-                      </tr>
+                    <tbody id="snake-tbody">
+                      
                     </tbody>
+                    
                   </table>
                 </div>
               </div>
@@ -194,5 +116,37 @@
         </div>
       </div>
     </div>
+    <script>
+      fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+          const breakoutTable = document.getElementById('breakout-tbody');
+          const snakeTable = document.getElementById('snake-tbody');
+          
+          data.breakout.sort((a,b) => b.punktzahl - a.punktzahl);
+          data.breakout.slice(0, 9).forEach((item, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <th scope="row">${index + 1}</th>
+              <td>${item.name}</td>
+              <td>${item.punktzahl}</td>
+            `;
+            breakoutTable.appendChild(row);
+          });
+          
+          data.snake.sort((a,b) => b.punktzahl - a.punktzahl);
+          data.snake.slice(0, 9).forEach((item, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <th scope="row">${index + 1}</th>
+              <td>${item.name}</td>
+              <td>${item.punktzahl}</td>
+            `;
+            snakeTable.appendChild(row);
+          });
+        })
+
+    </script>
+
   </body>
 </html>

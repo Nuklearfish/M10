@@ -60,7 +60,7 @@
               role="tab"
               aria-controls="pills-home"
               aria-selected="false"
-              onclick="location.href='/pong.html'"
+              onclick="location.href='pong.html'"
             >
               Pong
             </button>
@@ -75,7 +75,7 @@
               role="tab"
               aria-controls="pills-profile"
               aria-selected="true"
-              onclick="location.href='/breakout.html'"
+              onclick="location.href='breakout.html'"
             >
               Breakout
             </button>
@@ -90,7 +90,7 @@
               role="tab"
               aria-controls="pills-contact"
               aria-selected="false"
-              onclick="location.href='/snake.html'"
+              onclick="location.href='snake.html'"
             >
               Snake
             </button>
@@ -135,19 +135,16 @@
               <div class="h-100 p-5 text-bg-dark rounded-3">
                 <h2>Anleitung Bereakout</h2>
                 <p>
-                  Vor dem Spiel: <br> Benutze die Pfeiltasten um das Level auszuwählen<br><br>
-                  Steuerung: <br> Der Spieler links kontrolliert seinen Schläger mit den "Q" und "A"
-                  Tasten um den Schläger jeweils hoch und runter zu bewegen. <br>
-                  Der Spieler rechts benutzt dafür jeweils die "P" und "L" Tasten. <br><br>
-                  Die "Esc" Taste kann zum Pausieren und neu starten des Piel verwendet werden.
+                  Vor dem Spiel: <br> Benutze die Pfeiltasten(nach oben und unten)  um das Level auszuwählen, 
+                  und die Leertaste um das Spiel zu starten.<br><br>
+                  Steuerung: <br> Der Schläger wird mit mit den seitlichen Peiltasten nach links und rechts bewegt.<br><br>
+                  Die "Esc" Taste kann zum pausieren und neu starten des Spiels verwendet werden. Achte darauf Popups zu erlauben.
                 </p>
-                <button class="btn btn-outline-light" type="button">
-                  Example button
-                </button>
+
               </div>
             </div>
             <div class="col-md-6">
-              <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+              <div id="bo" class="h-100 p-5 bg-body-tertiary border rounded-3 rowspan">
                 <div id="breakout">
                   <canvas id="canvas">
                     <div class='unsupported'>
@@ -179,7 +176,10 @@
                 <script src="breakout/levels.js"></script>
                 <script>
                 Game.ready(function() {
-                  var game = Game.start('canvas', Breakout);
+                  var cfg = {};
+                  cfg.width = document.getElementById('breakout').offsetWidth;
+                  cfg.height = document.getElementById('bo').offsetHeight;
+                  var game = Game.start('canvas', Breakout, cfg);
                 });
                 </script>
               </div>
