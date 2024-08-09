@@ -39,8 +39,79 @@
           <li class="nav-item">
             <a href="./manual.html" class="nav-link">Anleitung</a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">Name festlegen</a>
+          <li class="nav-item" id="playerNameContainer">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#setName">
+              Name Festlegen
+            </button>
+            <script>
+              // Check for currentPlayer cookie on page load
+              document.addEventListener('DOMContentLoaded', () => {
+                const currentPlayerCookie = document.cookie.match(new RegExp('currentPlayer=([^;]*)'));
+                if (currentPlayerCookie) {
+                  const currentPlayerData = JSON.parse(currentPlayerCookie[1]);
+                  const playerName = currentPlayerData.name;
+                  const playerNameButton = document.getElementById('playerNameContainer').getElementsByTagName('button')[0];
+                  playerNameButton.textContent = `Name: ${playerName}`;
+                }
+              });
+            </script>
+  
+            <div class="modal fade" id="setName" tabindex="-1" aria-labelledby="setNameLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="setNameLabel">Geben Sie hier Ihren Namen ein </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <input type="text" id="playerName" placeholder="Max Mustermann" />
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbruch</button>
+                    <button type="button" class="btn btn-primary" id="saveName">Bestätigen</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <script>
+              // Eventlistener für den Bestätigen Button --> Legt neuen Cookie an
+              document.getElementById('saveName').addEventListener('click', () => {
+                const playerNameInput = document.getElementById('playerName');
+                const playerName = playerNameInput.value.trim();
+                const modal = document.getElementById('setName');
+                
+                // Hide modal
+                const modalInstance = bootstrap.Modal.getInstance(modal);
+                modalInstance.hide();
+  
+                // Check if currentPlayer cookie is set
+                const currentPlayerCookie = document.cookie.match(new RegExp('currentPlayer=([^;]*)'));
+                if (currentPlayerCookie) {
+                  const currentPlayerData = JSON.parse(currentPlayerCookie[1]);
+                  const playerName = currentPlayerData.name;
+                } 
+  
+                // Set new cookie for current player
+                if (playerName) {
+                  const highscoreCookie = document.cookie.match(new RegExp('highscores=([^;]*)'));
+                  const highscoreData = highscoreCookie ? JSON.parse(highscoreCookie[1]) : {};
+  
+                  const currentPlayerData = {
+                    name: playerName,
+                    highscoreBreakout: highscoreData.breakout[0].punktzahl, 
+                    highscoreSnake: highscoreData.snake[0].punktzahl 
+                  };
+  
+                  const expires = new Date(Date.now() + 30 * 60 * 1000).toUTCString(); 
+                  document.cookie = `currentPlayer=${JSON.stringify(currentPlayerData)}; expires=${expires}; path=/`;
+  
+                  // Update the button text
+                  const playerNameButton = document.getElementById('playerNameContainer').getElementsByTagName('button')[0];
+                  playerNameButton.textContent = `Name: ${playerName}`;
+                }
+              })
+            </script>
           </li>
         </ul>
       </header>
