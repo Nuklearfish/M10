@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Nils Mäder, Robert Glöckner" />
+    <title>HappyLittleGames</title>
+
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <!--<link href="./pong/pong.css" media="screen, print" rel="stylesheet" type="text/css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <script src="./bootstrap/js/bootstrap.bundle.js"></script>
+    <script src=".\index.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <header
+        class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+        >
+          <span class="material-symbols-outlined"> sports_esports </span>
+          <span class="fs-4">HappyLittleGames</span>
+        </a>
+
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a href="#" class="nav-link active" aria-current="page">Games</a>
+          </li>
+          <li class="nav-item">
+            <a href="./highscores.html" class="nav-link">Highscores</a>
+          </li>
+          <li class="nav-item">
+            <a href="./manual.html" class="nav-link">Anleitung</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Name festlegen</a>
+          </li>
+        </ul>
+      </header>
+      <nav>
+        <ul
+          class="nav nav-pills mb-3 justify-content-center"
+          id="pills-tab"
+          role="tablist"
+        >
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="pills-home-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-home"
+              type="button"
+              role="tab"
+              aria-controls="pills-home"
+              aria-selected="false"
+              onclick="location.href='/pong.html'"
+            >
+              Pong
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="pills-profile-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-profile"
+              type="button"
+              role="tab"
+              aria-controls="pills-profile"
+              aria-selected="true"
+              onclick="location.href='/breakout.html'"
+            >
+              Breakout
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="pills-contact-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-contact"
+              type="button"
+              role="tab"
+              aria-controls="pills-contact"
+              aria-selected="false"
+              onclick="location.href='/snake.html'"
+            >
+              Snake
+            </button>
+          </li>
+          <!--  
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="pills-disabled-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-disabled"
+              type="button"
+              role="tab"
+              aria-controls="pills-disabled"
+              aria-selected="false"
+            >
+              Disabled
+            </button>
+          </li>
+          -->
+        </ul>
+      </nav>
+      <div class="tab-content" id="pills-tabContent">
+        <div
+          class="tab-pane fade"
+          id="pills-home"
+          role="tabpanel"
+          aria-labelledby="pills-home-tab"
+          tabindex="0"
+        >
+          
+        </div>
+        <div
+          class="tab-pane fade show active"
+          id="pills-profile"
+          role="tabpanel"
+          aria-labelledby="pills-profile-tab"
+          tabindex="0"
+        >
+          <div class="row align-items-md-stretch">
+            <div class="col-md-3">
+              <div class="h-100 p-5 text-bg-dark rounded-3">
+                <h2>Anleitung Bereakout</h2>
+                <p>
+                  Vor dem Spiel: <br> Benutze die Pfeiltasten um das Level auszuwählen<br><br>
+                  Steuerung: <br> Der Spieler links kontrolliert seinen Schläger mit den "Q" und "A"
+                  Tasten um den Schläger jeweils hoch und runter zu bewegen. <br>
+                  Der Spieler rechts benutzt dafür jeweils die "P" und "L" Tasten. <br><br>
+                  Die "Esc" Taste kann zum Pausieren und neu starten des Piel verwendet werden.
+                </p>
+                <button class="btn btn-outline-light" type="button">
+                  Example button
+                </button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+                <div id="breakout">
+                  <canvas id="canvas">
+                    <div class='unsupported'>
+                      Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
+                    </div>
+                  </canvas>
+                  <div id="levels">
+                    <img id="next" class="disabled" src="breakout/images/up.png"   title="next level">
+                    <img id="prev" class="disabled" src="breakout/images/down.png" title="previous level">
+                    <span id="label">level:</span><span id="level"></span>
+                  </div>
+                  <div id="controls">
+                    <input id='sound' type='checkbox' />
+                    <label for='sound'>sound</label>
+                  </div>
+                  <div id="instructions" style="display:none;">
+                    <!--
+                    <div class='keyboard'>
+                      <b>space</b> to start<br>
+                      <b>left/right</b> to move paddle<br>
+                      <b>up/down</b> to change level
+                    </div>
+                    -->
+                  </div>
+                </div>
+              
+                <script src="breakout/game.js"></script>
+                <script src="breakout/breakout.js"></script>
+                <script src="breakout/levels.js"></script>
+                <script>
+                Game.ready(function() {
+                  var game = Game.start('canvas', Breakout);
+                });
+                </script>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="h- p-5 bg-body-tertiary border rounded-3">
+                <h2>Highscores</h2>
+
+                <ul class="list-group list-group-horizontal" id="platz1">
+                  <li class="list-group-item">1</li>
+                  <li class="list-group-item">Name</li>
+                  <li class="list-group-item">Punkte</li>
+                </ul>
+                <ul class="list-group list-group-horizontal" id="platz2">
+                  <li class="list-group-item">2</li>
+                  <li class="list-group-item">Name</li>
+                  <li class="list-group-item">Punkte</li>
+                </ul>
+                <ul class="list-group list-group-horizontal" id="platz3">
+                  <li class="list-group-item">3</li>
+                  <li class="list-group-item">Name</li>
+                  <li class="list-group-item">Punkte</li>
+                </ul>
+                <ul class="list-group list-group-horizontal" id="platz4">
+                  <li class="list-group-item">4</li>
+                  <li class="list-group-item">Name</li>
+                  <li class="list-group-item">Punkte</li>
+                </ul>
+                <ul class="list-group list-group-horizontal" id="platz5">
+                  <li class="list-group-item">5</li>
+                  <li class="list-group-item">Name</li>
+                  <li class="list-group-item">Punkte</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="pills-contact"
+        role="tabpanel"
+        aria-labelledby="pills-contact-tab"
+        tabindex="0"
+      >
+        
+      </div>
+
+      <!--
+      <div
+        class="tab-pane fade"
+        id="pills-disabled"
+        role="tabpanel"
+        aria-labelledby="pills-disabled-tab"
+        tabindex="0"
+      >
+        ...cbfdbdfb
+      </div> 
+      -->
+    </div>
+  </body>
+</html>

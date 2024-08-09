@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Nils Mäder, Robert Glöckner" />
+    <title>HappyLittleGames</title>
+
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <script src="./bootstrap/js/bootstrap.bundle.js"></script>
+    <script src=".\index.js"></script>
+  <link href="snake/snakes.css" media="screen, print" rel="stylesheet" type="text/css" /> 
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      <header
+        class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+        >
+          <span class="material-symbols-outlined"> sports_esports </span>
+          <span class="fs-4">HappyLittleGames</span>
+        </a>
+
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a href="#" class="nav-link active" aria-current="page">Games</a>
+          </li>
+          <li class="nav-item">
+            <a href="./highscores.html" class="nav-link">Highscores</a>
+          </li>
+          <li class="nav-item">
+            <a href="./manual.html" class="nav-link">Anleitung</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Name festlegen</a>
+          </li>
+        </ul>
+      </header>
+      <nav>
+        <ul
+          class="nav nav-pills mb-3 justify-content-center"
+          id="pills-tab"
+          role="tablist"
+        >
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="pills-home-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-home"
+              type="button"
+              role="tab"
+              aria-controls="pills-home"
+              aria-selected="false"
+              onclick="location.href='/pong.html'"
+            >
+              Pong
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link "
+              id="pills-profile-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-profile"
+              type="button"
+              role="tab"
+              aria-controls="pills-profile"
+              aria-selected="true"
+              onclick="location.href='/breakout.html'"
+            >
+              Breakout
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="pills-contact-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-contact"
+              type="button"
+              role="tab"
+              aria-controls="pills-contact"
+              aria-selected="false"
+            >
+              Snake
+            </button>
+          </li>
+          <!--  
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="pills-disabled-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-disabled"
+              type="button"
+              role="tab"
+              aria-controls="pills-disabled"
+              aria-selected="false"
+            >
+              Disabled
+            </button>
+          </li>
+          -->
+        </ul>
+      </nav>
+      <div class="tab-content" id="pills-tabContent">
+        <div
+          class="tab-pane fade"
+          id="pills-home"
+          role="tabpanel"
+          aria-labelledby="pills-home-tab"
+          tabindex="0"
+        >
+          
+        </div>
+        <div
+          class="tab-pane fade "
+          id="pills-profile"
+          role="tabpanel"
+          aria-labelledby="pills-profile-tab"
+          tabindex="0"
+        >
+          
+      </div>
+      <div
+        class="tab-pane fade show active"
+        id="pills-contact"
+        role="tabpanel"
+        aria-labelledby="pills-contact-tab"
+        tabindex="0"
+      >
+      <div class="row align-items-md-stretch">
+        <div class="col-md-3">
+          <div class="h-100 p-5 text-bg-dark rounded-3">
+            <h2>Anleitung Bereakout</h2>
+            <p>
+              Swap the background-color utility and add a `.text-*` color
+              utility to mix up the jumbotron look. Then, mix and match with
+              additional component themes and more.
+            </p>
+            <button class="btn btn-outline-light" type="button">
+              Example button
+            </button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+            <div id="snakes" >
+
+          
+              <div id='sound' class='on' title='toggle music and fx' style='display:none;'></div>
+          
+              <div id="score">
+                <span class="current"><span class='label'>Score: </span><span class="value">000000</span></span>
+                <span class="high"><span class='label'>High: </span><span class="value">000000</span></span>
+              </div>
+          
+              <canvas id="canvas">
+                <div class='unsupported'>
+                  Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
+                </div>
+              </canvas>
+          
+              <div id="overlay">
+          
+                <img id="logo" src="snake/images/logo.png">
+          
+                <div id="loading" class='menu' style='display:none;'>
+                  <h1>Loading...</h1>
+                </div>
+          
+                <div id="highscores" class='menu' style='display:none;'>
+                  <h1>High Scores</h1>
+                  <ul></ul>
+                </div>
+          
+                <div id="credits" class='menu' style='display:none;'>
+                  <ul>
+                    <li class='author'>Created by <a target="_credits" href="http://codeincomplete.com/posts/2011/8/5/starting_snakes/">Jake Gordon</a></li>
+                    <li><span class='key'>            Logo </span> <a class='value' target="_credits" href="http://codeincomplete.com/posts/2011/7/16/quest_for_indy_font/">Jake Gordon</a></li>
+                    <li><span class='key'>           Fonts </span> <a class='value' target="_credits" href="http://www.dafont.com/sf-fedora.font">SF Fedora</a></li>
+                    <li><span class='key'>       Watermark </span> <a class='value' target="_credits" href="http://www.istockphoto.com/file_closeup.php?id=4788598">VichanChairat</a></li>
+                    <li><span class='key'>           Music </span> <a class='value' target="_credits" href="http://luckylionstudios.com/royalty-free-video-game-music-library/">Lucky Lion Studios</a></li>
+                    <li><span class='key'>        Sound FX </span> <a class='value' target="_credits" href="http://www.premiumbeat.com/">Premium Beat</a></li>
+                    <li><span class='key'>JS state machine </span> <a class='value' target="_credits" href="https://github.com/jakesgordon/javascript-state-machine">Jake Gordon</a></li>
+                    <li><span class='key'>     JS selector </span> <a class='value' target="_credits" href="http://sizzlejs.com/">Sizzle</a></li>
+                    <li><span class='key'>        JS audio </span> <a class='value' target="_credits" href="https://github.com/jakesgordon/javascript-audio-fx">Jake Gordon</a></li>
+                    <li><span class='key'>    JS animation </span> <a class='value' target="_credits" href="http://berniesumption.com/software/animator/">Bernie Sumption</a></li>
+                    <li><span class='key'>      JS counter </span> <a class='value' target="_credits" href="https://github.com/mrdoob/stats.js">Mr.Doob</a></li>
+                  </ul>
+                </div>
+              </div>
+          
+
+          
+            </div>
+
+            <script src="snake/snakes.js"></script>
+            <script>
+            Game.ready(function() {
+              game = Snakes();
+            });
+            </script>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="h- p-5 bg-body-tertiary border rounded-3">
+            <h2>Highscores</h2>
+
+            <ul class="list-group list-group-horizontal" id="platz1">
+              <li class="list-group-item">1</li>
+              <li class="list-group-item">Name</li>
+              <li class="list-group-item">Punkte</li>
+            </ul>
+            <ul class="list-group list-group-horizontal" id="platz2">
+              <li class="list-group-item">2</li>
+              <li class="list-group-item">Name</li>
+              <li class="list-group-item">Punkte</li>
+            </ul>
+            <ul class="list-group list-group-horizontal" id="platz3">
+              <li class="list-group-item">3</li>
+              <li class="list-group-item">Name</li>
+              <li class="list-group-item">Punkte</li>
+            </ul>
+            <ul class="list-group list-group-horizontal" id="platz4">
+              <li class="list-group-item">4</li>
+              <li class="list-group-item">Name</li>
+              <li class="list-group-item">Punkte</li>
+            </ul>
+            <ul class="list-group list-group-horizontal" id="platz5">
+              <li class="list-group-item">5</li>
+              <li class="list-group-item">Name</li>
+              <li class="list-group-item">Punkte</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+
+    </div>
+  </body>
+</html>
