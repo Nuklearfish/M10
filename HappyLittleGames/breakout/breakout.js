@@ -157,6 +157,8 @@ Breakout = {
 
   onlose: function() {
     this.playSound('gameover');
+    console.log("score" + this.score);
+    
   },
 
   onleavegame: function() {
